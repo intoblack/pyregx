@@ -3,5 +3,7 @@
 
 
 regx_dict = {
-    'CLEAR_NUM' : '(-|\\+)?\d*\d'
+    'CLEAR_NUM' : '(-|\\+)?\d*\d',
+    'CLEAR_WORD' : '[\w\'-_]*[\w\'-_']',
+    'ANY_WORD' : '(.+?)'
 }
