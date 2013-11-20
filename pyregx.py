@@ -20,7 +20,6 @@ class PyRe(object):
         if not pattern.endswith('$'):
             self.__end_pattern = '%s$' % self.__pattern
             self.__equal_pattern = '%s$' % self.__pattern
-        print self.__end_pattern
         self.__start_compile = re.compile(self.__start_pattern)
         self.__compile = re.compile(pattern)
         self.__end_compile = re.compile(self.__end_pattern)
@@ -64,5 +63,5 @@ class PyRe(object):
 
 
 if __name__ == "__main__":
-    p = PyRe(regdict.regx_dict['CLEAR_NUM'])
-    print p.find_all('+12 ,-12')
+    p = PyRe(regdict.regx_dict['MAIL'])
+    print p.equal('aihai2800@126.com')
