@@ -62,6 +62,21 @@ class PyRe(object):
         return find_data
 
 
+class MailReg(PyRe):
+
+    def __init__(self):
+        PyRe.__init__(self, regdict.regx_dict['MAIL'])
+
+
+class IpReg(PyRe):
+
+    def __init__(self):
+        PyRe.__init__(self, regdict.regx_dict['IP'])
+
+
 if __name__ == "__main__":
+
     p = PyRe(regdict.regx_dict['MAIL'])
     print p.equal('aihai2800@126.com')
+    p = IpReg()
+    print p.find_iter('112.14.15.12')
