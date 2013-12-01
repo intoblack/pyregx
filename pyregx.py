@@ -20,7 +20,6 @@ class PyRe(object):
         if not pattern.endswith('$'):
             self.__end_pattern = '%s$' % self.__pattern
             self.__equal_pattern = '%s$' % self.__pattern
-        print self.__end_pattern
         self.__start_compile = re.compile(self.__start_pattern)
         self.__compile = re.compile(pattern)
         self.__end_compile = re.compile(self.__end_pattern)
@@ -97,10 +96,10 @@ class  PPattern(object):
         
 
 
-
 if __name__ == "__main__":
     p = PPattern()
     print p.IP.equal('123.145.23.45.22.1144')
     del p.IP
     print p
+
 
