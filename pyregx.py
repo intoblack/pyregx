@@ -63,19 +63,44 @@ class PyRe(object):
         return find_data
 
 
-class MailReg(PyRe):
+class  PPattern(object):
+    
+    __pattern_dict = {}
 
-    def __init__(self):
-        PyRe.__init__(self, regdict.regx_dict['MAIL'])
 
 
-class IpReg(PyRe):
+    def __setattr__(self,key,value):
+        if key and value and isinstance(key,(str)) and isinstance(value,(PyRe)):
+            if not self.__pattern_dict.has_key(key):
+                self.__pattern_dict[key] = value
+        else:
+            raise TypeError,'key must string and value is PyRe'
 
-    def __init__(self):
-        PyRe.__init__(self, regdict.regx_dict['IP'])
+    def __getattr__(self,key):
+        if isinstance(key , (str)):
+            if not self.__pattern_dict.has_key(key):
+                if regdict.regx_dict.has_key(key):
+                    self.__pattern_dict[key] = PyRe(regdict.regx_dict[key])
+                else:
+                    raise NotImplementedError,'regx_dict 没有正则'
+            return self.__pattern_dict[key]
+        raise TypeError,'key must be sting '
+
+
+    def __delattr__(self ,key):
+        if key and isinstance(key ,str):
+            if self.__pattern_dict.has_key(key):
+                del self.__pattern_dict[key]
+        else:
+            raise TypeError,'key must be string'
+
+        
 
 
 
 if __name__ == "__main__":
-    p = IpReg()
-    print p.find_iter('112.14.15.12')
+    p = PPattern()
+    print p.IP.equal('123.145.23.45.22.1144')
+    del p.IP
+    print p
+
