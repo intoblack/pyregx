@@ -78,8 +78,8 @@ class  PPattern(object):
     def __getattr__(self,key):
         if isinstance(key , (str)):
             if not self.__pattern_dict.has_key(key):
-                if regdict.regx_dict.has_key(key):
-                    self.__pattern_dict[key] = PyRe(regdict.regx_dict[key])
+                if regdict.regx_dict.has_key(key.upper()):
+                    self.__pattern_dict[key] = PyRe(regdict.regx_dict[key.upper()])
                 else:
                     raise NotImplementedError,'regx_dict 没有正则'
             return self.__pattern_dict[key]
@@ -97,9 +97,11 @@ class  PPattern(object):
 
 
 if __name__ == "__main__":
+    
     p = PPattern()
     print p.IP.equal('123.145.23.45.22.1144')
     del p.IP
-    print p
+    print p.mail.find_iter('xxx1212@126.com')
+    print p.html_tag.find_iter("<html xx=11>")
 
 
