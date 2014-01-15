@@ -111,3 +111,4 @@ if __name__ == "__main__":
     print p.mail.find_iter('xxx1212@126.com')
     print p.html_tag.find_iter("<html xx=11>")
     print p.date  == '2013/12/05'
+    print 'xx'.replace('x', 'y')
