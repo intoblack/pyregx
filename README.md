@@ -8,8 +8,8 @@ pyregx python专用的正则工具
 
 :::python
           
-          from pyregx import PPattern
-
+          from pyregx.pyregx import PPattern
+          
           regx = PPattern()
           print p.IP != '123.145.23.45' #返回true
           p.mail.find_iter('xxx1212@126.com') #['xxx1212@126.com']
