@@ -18,7 +18,18 @@ now_day = time.time()
 WORD_EXTRACT_REGX = ur'|'.join(ur'(?P<%s>%s)' % (pair[0], pair[1]) for pair in REGX_ARRY)
 WORD_EXTRACT = re.compile(WORD_EXTRACT_REGX, re.U | re.IGNORECASE).finditer
 
+clear_word_set = set([u'的' , u',' ,u'，'])
 
+print clear_word_set
+
+def clear_word(word):
+    if word and isinstance(word , (str, unicode)):
+        if isinstance(word , (str)):
+            word = word.decode('utf-8')
+        return ''.join([__tag  for __tag in word if __tag  not in clear_word_set])
+    raise Exception,'word isn\'t str or unicode'
+
+print clear_word("前年的今天，上午10点我去公司了".decode('utf-8'))
 
 for i in WORD_EXTRACT("前年的今天，上午10点我去公司了".decode('utf-8')):
     print i.groupdict()
